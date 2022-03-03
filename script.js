@@ -4,6 +4,7 @@ const form = document.getElementById('form');
 
 async function getMovies(url) {
   const res = await fetch(url);
+  //将返回的数据解析成json
   const result = await res.json();
   showMovies(result);
 }
@@ -18,7 +19,7 @@ function showMovies(movies)
 
   movies.forEach(movie => {
     // console.log(movie);
-    
+
     const { doubanRating,data,dateReleased } = movie;
     const movieEl = document.createElement('div')
           movieEl.classList.add('movie')
@@ -39,7 +40,7 @@ function showMovies(movies)
         </div>
 
     `
-    // 在main中插入，电影卡片
+    // 在main后插入，电影卡片
     mainContainer.appendChild(movieEl);
   })
 }
@@ -60,3 +61,9 @@ function setColor(doubanRating) {
 function setdateReleased(dateReleased){
     return dateReleased = dateReleased.slice(0,4)
 }
+
+// 点击logo刷新页面
+const logo = document.querySelector('.logo');
+logo.addEventListener('click', () => {
+  window.location.reload()
+})
